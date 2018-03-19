@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "YANTAN",
+  "description": "Yet Another NewTab as Notes",
+  "version": "0.1.0",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "management"
+  ]
+}

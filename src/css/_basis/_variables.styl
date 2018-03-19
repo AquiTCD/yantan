@@ -1,0 +1,92 @@
+// ============================================================
+// Kouto Swiss settings *Do NOT touch*
+// ============================================================
+ks-vendor-prefixes       = recommended
+ks-support-media-queries = true
+// ============================================================
+// default config  *should NOT touch*
+// ============================================================
+$font-size-root         ?= 62.5%
+$black-base             ?= $mdc-grey.b900
+$amount-base            ?= 33%
+$white-base             ?= $mdc-grey.b50
+$bg-color-base          ?= tint($mdc-amber.b50, $amount-base * 2)
+$bg-object-base         ?= tint($bg-color-base, $amount-base * 2)
+$font-color-base        ?= shade($mdc-brown.b900, $amount-base)
+$grey-base              ?= mix($black-base, $white-base, 50%)
+$color-base             ?= $mdc-red.a700
+$bg-color-emphasis      ?= tint($color-base, round($amount-base * 2.5))
+$alpha-density          ?= 0.62
+$ratio-base             ?= 1.4
+$font-size-base         ?= 1.5rem
+$unit-size-base         ?= $font-size-base * 1.8
+$letter-spacing-base    ?= 0.038em
+$font-weight-base       ?= normal
+$font-family-sans-serif ?= 'Noto Sans', 'Avenir Next', 'Open Sans', 'Helvetica Neue',  Helvetica, Roboto, YakuHanJPs, NotoSansJP-fixed, YuGothic-fixed, 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif
+$font-family-serif      ?= 'Noto Serif', 'Times New Roman', 'Roboto Slab', Garamond, YakuHanJPs, NotoSerifJP-fixed, YuMincho-fixed, 'Hiragino Mincho ProN', serif
+$font-family-monospace  ?= 'Source Code Pro', Inconsolate, 'Source Han Code JP', Myrica, CodeM, Ricty, Menlo, 'Dejavu Sans Mono', 'Ubuntu Mono', Consolas,  monospace
+$font-family-fantasy    ?= 'Montserrat', 'AvenirNext-Heavy', 'Arial Black', fantasy
+$font-family-base       ?= $font-family-sans-serif
+// ============================================================
+// Font size Caliculation from base setting *Do NOT have to set*
+// ============================================================
+$ratio-base-half   = ((($ratio-base - 1) / 2 ) + 1)
+$font-size-root-pc = $font-size-root * $ratio-base-half
+$font-size-x-large = $font-size-base * $ratio-base * $ratio-base
+$font-size-large   = $font-size-base * $ratio-base
+$font-size-small   = $font-size-base / $ratio-base-half
+$font-size-x-small = $font-size-base / $ratio-base
+// ============================================================
+// Color Caliculation *Do NOT have to set*
+// ============================================================
+$pure-black            = #000
+$pure-white            = #FFF
+$invert-bg-color       = invert($bg-color-base)
+$invert-font-color     = invert($font-color-base)
+$shadow-color-base     = alpha($pure-black, $alpha-density)
+$smoke-color-base      = alpha($pure-white, $alpha-density)
+$grey-tint             = tint($grey-base, ($amount-base * 2))
+$grey-shade            = shade($grey-base, $amount-base)
+$primary-color-base    = $color-base
+$primary-color-tint    = tint($primary-color-base, $amount-base)
+$primary-color-shade   = shade($primary-color-base, $amount-base)
+$secondary-color-base  = ($primary-color-base + 60deg)
+$secondary-color-tint  = tint($secondary-color-base, $amount-base)
+$secondary-color-shade = shade($secondary-color-base, $amount-base)
+$accent-color-base     = ($primary-color-base - 150deg)
+$accent-color-tint     = tint($accent-color-base, $amount-base)
+$accent-color-shade    = shade($accent-color-base, $amount-base)
+if light($bg-color-base)
+  $primary-text   = rgba($font-color-base, 0.87)
+  $secondary-text = rgba($font-color-base, 0.54)
+  $disabled-text  = rgba($font-color-base, 0.38)
+  $dividers-text  = rgba($font-color-base, 0.12)
+  $active-icon    = rgba($font-color-base, 0.54)
+  $inactive-icon  = rgba($font-color-base, 0.38)
+else
+  $primary-text   = rgba($font-color-base, 1)
+  $secondary-text = rgba($font-color-base, 0.70)
+  $disabled-text  = rgba($font-color-base, 0.50)
+  $dividers-text  = rgba($font-color-base, 0.12)
+  $active-icon    = rgba($font-color-base, 1)
+  $inactive-icon  = rgba($font-color-base, 0.50)
+// ============================================================
+// Display size for Responsive as a mobile first
+// ============================================================
+media-small   = only screen, max-width 599px  // 0-599 SmartPhone
+media-medium  = only screen, min-width 600px  // 600-959 Tablet
+media-larger  = only screen, min-width 960px  // 960-1280 Laptop PC
+media-largest = only screen, min-width 1280px // 1280- Desktop PC
+// ============================================================
+// for Printing out(monotone)
+// NOTE: I'm not sure it works well or not
+//  ============================================================
++media-query( print )
+  #header, #footer
+    display: none
+  $bg-color-base = white
+  $font-color-base = black
+  if dark(grayscale($color-base))
+    $color-base = grayscale($color-base)
+  else
+    $color-base = grayscale(invert($color-base))

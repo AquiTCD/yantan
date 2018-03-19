@@ -91,7 +91,6 @@ $RECYCLE.BIN/
 ## Specific to RubyMotion:
 .dat*
 .repl_history
-build/
 *.bridgesupport
 build-iPhoneOS/
 build-iPhoneSimulator/
@@ -246,5 +245,3 @@ typings/
 
 # next.js build output
 .next
-
-
