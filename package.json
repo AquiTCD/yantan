@@ -24,8 +24,10 @@
   "dependencies": {
     "eslint-cli": "^1.1.1",
     "github-markdown-css": "^2.10.0",
+    "keen-ui": "^1.0.1",
     "lodash": "^4.17.5",
     "marked": "^0.3.17",
+    "prettier-eslint-cli": "^4.7.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

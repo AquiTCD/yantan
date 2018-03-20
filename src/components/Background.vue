@@ -17,7 +17,7 @@ export default {
         'sepia'     : 0,
         'hue-rotate': 0,
         'invert'    : 0,
-        'opacity'   : 61,
+        'opacity'   : 60,
         'blur'      : 0,
       },
       isCover       : true,

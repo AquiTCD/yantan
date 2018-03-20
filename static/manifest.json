@@ -3,11 +3,16 @@
   "name": "YANTAN",
   "description": "Yet Another NewTab as Notes",
   "version": "0.1.0",
+  "default_locale": "en",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
   "permissions": [
     "management",
-    "fileSystem"
   ]
 }

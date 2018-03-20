@@ -37,6 +37,7 @@ body
   position: fixed
   right: 15px
   bottom: 15px
+  z-index: 101
 .page-enter-active, .page-leave-active
   transition: all .9s
 .page-enter
