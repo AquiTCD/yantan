@@ -1,16 +1,20 @@
 <template lang='pug'>
-.menu
-  //- もし編集画面と設定画面のトグル
-  router-link(:to="{ name: 'preferences', params: {} }") Preferences
+.menus
+  router-link(:to="{ name: 'preferences', params: {} }" v-if="isEditing") Preferences
+  router-link(:to="{ name: 'editor', params: {} }" v-else) Edit
 </template>
 
 <script>
-// import _ from 'lodash'
-// import marked from 'marked'
 export default {
-  name: 'menu',
+  name    : 'menus',
+  computed: {
+    isEditing () {
+      return this.$route.name === 'editor'
+    },
+  },
 }
 </script>
 
 <style lang='stylus' scoped>
+
 </style>

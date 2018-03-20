@@ -1,6 +1,9 @@
 <template lang='pug'>
 .preferences
-  | change preferences
+  h1 Preferences
+  ul
+    li test
+    li test
 </template>
 
 <script>
@@ -10,4 +13,7 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
+.preferences
+  height: 61vh
+  width: 100vw
 </style>

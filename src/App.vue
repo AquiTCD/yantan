@@ -1,6 +1,7 @@
 <template lang='pug'>
   #app
-    router-view/
+    transition(name="page")
+      router-view.main/
     Menu.menu
 </template>
 
@@ -16,8 +17,34 @@ export default {
 
 <style lang='stylus'>
 @import "./css/style"
+html
+  background: transparent
+  &::-webkit-scrollbar
+    display: none
+body
+  width: 100vw
+  height: auto
+  min-height: 100vh
+  margin: 0
+  padding: 0
 #app
-  padding: 15px
+  background: transparent
+.main
+  display: flex
+  justify-content: center
+  align-items: center
 .menu
-  // 右下、mousehoverで実体化、しないと半透明
+  position: fixed
+  right: 15px
+  bottom: 15px
+.page-enter-active, .page-leave-active
+  transition: all .9s
+.page-enter
+  opacity: 0
+.page-leave-to
+  opacity: 0
+.page-leave, .page-enter-to
+  margin-top: 0
+  margin-bottom: 0
+  opacity: 1
 </style>
