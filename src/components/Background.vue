@@ -1,6 +1,6 @@
 <template lang='pug'>
 .background(:style="bgColor")
-  img.img.object-fit(:src="file" :style="filter" :class="{cover: isCover}")
+  img.img.object-fit(:src="bgFileUrlSetting" :style="filter" :class="{cover: isCover}")
 </template>
 
 <script>
@@ -8,8 +8,10 @@ export default {
   name: 'background',
   data () {
     return {
-      file          : 'file:///Users/Aqui/Desktop/images/20141121172012.jpg',
-      filterSettings: {
+      bgColorSetting       : '#000000',
+      bgDisplayStyleSetting: 1,
+      bgFileUrlSetting     : 'https://source.unsplash.com/random',
+      filterSettings       : {
         'brightness': 100,
         'contrast'  : 100,
         'saturate'  : 100,
@@ -20,8 +22,6 @@ export default {
         'opacity'   : 60,
         'blur'      : 0,
       },
-      isCover       : true,
-      bgColorSetting: '#000',
     }
   },
   computed: {
@@ -44,11 +44,14 @@ export default {
     bgColor () {
       return `background-color: ${this.bgColorSetting.trim()}`
     },
+    isCover () {
+      return !!Number(this.bgDisplayStyleSetting)
+    },
   },
   mounted () {
-    this.file = localStorage.getItem('file') || this.file
-    this.isCover = localStorage.getItem('isCover') || this.isCover
-    this.bgColorSetting = localStorage.getItem('bgColorSetting') || this.bgColorSetting
+    this.bgFileUrlSetting = localStorage.getItem('bgFileUrl') || this.bgFileUrlSetting
+    this.bgDisplayStyleSetting = localStorage.getItem('bgDisplayStyle') || this.bgDisplayStyleSetting
+    this.bgColorSetting = localStorage.getItem('bgColor') || this.bgColorSetting
     this.filterSettings.brightness = localStorage.getItem('filterBrightness') || this.filterSettings.brightness
     this.filterSettings.contrast = localStorage.getItem('filterContrast') || this.filterSettings.contrast
     this.filterSettings.saturate = localStorage.getItem('filterSaturate') || this.filterSettings.saturate

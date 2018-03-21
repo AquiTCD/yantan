@@ -1,7 +1,7 @@
 {
   "name": "yantan",
   "version": "0.1.0",
-  "description": "Yet Another NewTab as Notes",
+  "description": "Yet Another NewTab as Notes for Chrome Extension",
   "author": "Aqui Tsuchida <aqui.tcd+dev@gmail.com>",
   "private": true,
   "scripts": {
@@ -22,12 +22,10 @@
     ]
   },
   "dependencies": {
-    "eslint-cli": "^1.1.1",
+    "element-ui": "^2.2.2",
     "github-markdown-css": "^2.10.0",
-    "keen-ui": "^1.0.1",
     "lodash": "^4.17.5",
     "marked": "^0.3.17",
-    "prettier-eslint-cli": "^4.7.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -53,7 +51,8 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.15.0",
-    "eslint-config-standard": "^10.2.1",
+    "eslint-cli": "^1.1.1",
+    "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.7.0",
@@ -81,6 +80,7 @@
     "postcss-url": "^7.2.1",
     "prettier": "^1.11.1",
     "prettier-eslint": "^8.8.1",
+    "prettier-eslint-cli": "^4.7.1",
     "pug": "^2.0.1",
     "pug-loader": "^2.3.0",
     "rimraf": "^2.6.0",

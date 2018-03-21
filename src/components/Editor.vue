@@ -1,7 +1,7 @@
 <template lang='pug'>
 .editor.markdown-body(@keyup.ctrl.enter="toggleEditor()" @keyup.esc="toggleEditor()")
   .notearea(:class="{dummy: !input.trim()}" v-html="compiledMarkdown" @click="toggleEditor()" v-if="!isEditable" :style="text")
-  textarea.textarea(:value="input" @input="update" :placeholder="dummyText" v-else)
+  textarea.textarea(:value="input" @input="update" :placeholder="dummyTextSetting" v-else)
   Background
 </template>
 
@@ -13,31 +13,32 @@ export default {
   name: 'editor',
   data () {
     return {
-      isEditable     : false,
-      input          : '',
-      dummyText      : 'Write something you want in Markdown',
-      fontColor      : '#fff',
-      isBoldShadow   : true,
-      textShadowColor: '',
+      isEditable          : false,
+      input               : '',
+      dummyTextSetting    : 'Write something you want in Markdown',
+      fontColorSetting    : '#FFFFFF',
+      textEdgeStyleSetting: 0,
+      textEdgeColorSetting: '#000000',
     }
   },
   computed: {
     compiledMarkdown () {
-      let markdownText = this.input.trim() || this.dummyText
+      let markdownText = this.input.trim() || this.dummyTextSetting
       return marked(markdownText, { gfm: true, tables: true, breaks: true, sanitize: true })
     },
     text () {
       let style = ''
       let regexColor = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/
-      let shadowColor = this.textShadowColor.trim()
-      let color = this.fontColor.trim()
+      let shadowColor = this.textEdgeColorSetting.trim()
+      let color = this.fontColorSetting.trim()
+      let edgeStyle = Number(this.textEdgeStyleSetting)
       if (regexColor.test(color)) {
         style += `color: ${color};`
       }
-      if (regexColor.test(shadowColor)) {
-        if (this.isBoldShadow) {
+      if (edgeStyle !== 0 && regexColor.test(shadowColor)) {
+        if (edgeStyle === 2) {
           style += `text-shadow: ${shadowColor} 2px 0,  ${shadowColor} -2px 0, ${shadowColor} 0 -2px, ${shadowColor} 0 2px, ${shadowColor} 2px 2px , ${shadowColor} -2px 2px, ${shadowColor} 2px -2px, ${shadowColor} -2px -2px, ${shadowColor} 1px 2px,  ${shadowColor} -1px 2px, ${shadowColor} 1px -2px, ${shadowColor} -1px -2px, ${shadowColor} 2px 1px,  ${shadowColor} -2px 1px, ${shadowColor} 2px -1px, ${shadowColor} -2px -1px;`
-        } else {
+        } else if (edgeStyle === 1) {
           style += `text-shadow: ${shadowColor} 1px 1px 0, ${shadowColor} -1px -1px 0, ${shadowColor} -1px 1px 0, ${shadowColor} 1px -1px 0, ${shadowColor} 0px 1px 0, ${shadowColor}  0-1px 0, ${shadowColor} -1px 0 0, ${shadowColor} 1px 0 0;`
         }
       }
@@ -55,11 +56,10 @@ export default {
   },
   mounted () {
     this.input = localStorage.getItem('input') || this.input
-    this.isEditable = localStorage.getItem('isEditable') || this.isEditable
-    this.dummyText = localStorage.getItem('dummyText') || this.dummyText
-    this.fontColor = localStorage.getItem('fontColor') || this.fontColor
-    this.isBoldShadow = localStorage.getItem('isBoldShadow') || this.isBoldShadow
-    this.textShadowColor = localStorage.getItem('textShadowColor') || this.textShadowColor
+    this.dummyTextSetting = localStorage.getItem('dummyTextSetting') || this.dummyTextSetting
+    this.fontColorSetting = localStorage.getItem('fontColor') || this.fontColorSetting
+    this.textEdgeStyleSetting = localStorage.getItem('textEdgeStyle') || this.textEdgeStyleSetting
+    this.textEdgeColorSetting = localStorage.getItem('textEdgeColor') || this.textEdgeColorSetting
   },
   components: {
     Background,
