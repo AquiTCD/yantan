@@ -2,8 +2,7 @@
   "manifest_version": 2,
   "name": "YANTAN",
   "description": "Yet Another NewTab as Notes",
-  "version": "0.1.0",
-  "default_locale": "en",
+  "version": "0.1.1",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
@@ -13,6 +12,6 @@
     "newtab": "index.html"
   },
   "permissions": [
-    "management",
+    "management"
   ]
 }

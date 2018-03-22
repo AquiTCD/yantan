@@ -57,7 +57,7 @@ export default {
     this.filterSettings.saturate = localStorage.getItem('filterSaturate') || this.filterSettings.saturate
     this.filterSettings.grayscale = localStorage.getItem('filterGrayscale') || this.filterSettings.grayscale
     this.filterSettings.sepia = localStorage.getItem('filterSepia') || this.filterSettings.sepia
-    this.filterSettings['hue-rotate'] = localStorage.getItem('filterHue-rotate') || this.filterSettings['hue-rotate']
+    this.filterSettings['hue-rotate'] = localStorage.getItem('filterHueRotate') || this.filterSettings['hue-rotate']
     this.filterSettings.invert = localStorage.getItem('filterInvert') || this.filterSettings.invert
     this.filterSettings.opacity = localStorage.getItem('filterOpacity') || this.filterSettings.opacity
     this.filterSettings.blur = localStorage.getItem('filterBlur') || this.filterSettings.blur

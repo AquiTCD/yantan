@@ -1,6 +1,6 @@
 <template lang='pug'>
 .menus
-  el-button.translucent(v-if="isEditing" icon="el-icon-setting" size="mini" round @click="movePageTo('preferences')") Preferences
+  el-button.translucent(v-if="isEditor" icon="el-icon-setting" size="mini" round @click="movePageTo('preferences')") Preferences
   el-button(v-else icon="el-icon-edit" size="mini" round @click="movePageTo('editor')") Edit Note
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name    : 'menus',
   computed: {
-    isEditing () {
+    isEditor () {
       return this.$route.name === 'editor'
     },
   },

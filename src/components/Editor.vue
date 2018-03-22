@@ -1,7 +1,9 @@
 <template lang='pug'>
 .editor.markdown-body(@keyup.ctrl.enter="toggleEditor()" @keyup.esc="toggleEditor()")
-  .notearea(:class="{dummy: !input.trim()}" v-html="compiledMarkdown" @click="toggleEditor()" v-if="!isEditable" :style="text")
-  textarea.textarea(:value="input" @input="update" :placeholder="dummyTextSetting" v-else)
+  .notearea(:class="{dummy: !input.trim()}" v-html="compiledMarkdown" @click="toggleEditor()" v-if="!isEditiong" :style="text")
+  .textarea(v-else)
+    textarea(:value="input" @input="update" :placeholder="dummyTextSetting")
+    el-button.closeBtn.translucent(v-if="isEditiong" icon="el-icon-circle-close-outline" size="mini" round  @click="toggleEditor()") Close Editor
   Background
 </template>
 
@@ -13,7 +15,7 @@ export default {
   name: 'editor',
   data () {
     return {
-      isEditable          : false,
+      isEditiong          : false,
       input               : '',
       dummyTextSetting    : 'Write something you want in Markdown',
       fontColorSetting    : '#FFFFFF',
@@ -51,12 +53,12 @@ export default {
       localStorage.setItem('input', e.target.value)
     }, 300),
     toggleEditor () {
-      this.isEditable = !this.isEditable
+      this.isEditiong = !this.isEditiong
     },
   },
   mounted () {
     this.input = localStorage.getItem('input') || this.input
-    this.dummyTextSetting = localStorage.getItem('dummyTextSetting') || this.dummyTextSetting
+    this.dummyTextSetting = localStorage.getItem('dummyText') || this.dummyTextSetting
     this.fontColorSetting = localStorage.getItem('fontColor') || this.fontColorSetting
     this.textEdgeStyleSetting = localStorage.getItem('textEdgeStyle') || this.textEdgeStyleSetting
     this.textEdgeColorSetting = localStorage.getItem('textEdgeColor') || this.textEdgeColorSetting
@@ -72,20 +74,29 @@ export default {
   height: 100vh
   width: 100vw
 .textarea
-  font-size: 18px
-  line-height: 1.5
-  resize: none
-  padding: 0.39em
   width: 61vw
   height: 61vh
   min-height: 200px
-  border: 1px solid #ccc
-  border-radius: 4px
   z-index: 100
+  position: relative
+  textarea
+    width: 100%
+    height: 100%
+    font-size: 18px
+    line-height: 1.5
+    resize: none
+    padding: 0.39em
+    border: 1px solid #ccc
+    border-radius: 4px
 .notearea
   width: 61vw
   height: 61vh
   z-index: 100
 .dummy
   border-radius: 4px
+.closeBtn
+  z-index: 101
+  position: absolute
+  right: 0.39em
+  bottom: 0.39em
 </style>

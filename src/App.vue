@@ -39,7 +39,7 @@ body
   bottom: 15px
   z-index: 101
 .page-enter-active, .page-leave-active
-  transition: all .9s
+  transition: all .4s
 .page-enter
   opacity: 0
 .page-leave-to
