@@ -2,8 +2,8 @@
 .editor.markdown-body(@click="closeEditor($event)")
   .notearea(v-html="compiledMarkdown" @click.stop="clickEditor($event)" v-if="!isEditing" :style="text")
   .textarea(v-else @click.stop="openEditor($event)")
-    textarea(:value="input" @input="update" :placeholder="dummyTextSetting" @keyup.esc="closeEditor($event)" @keyup.ctrl.enter="closeEditor($event)")
-  Background
+    textarea(:value="input" @input="update" :placeholder="placeholder" @keyup.esc="closeEditor($event)" @keyup.ctrl.enter="closeEditor($event)")
+  Background(:preferences='preferences')
 </template>
 
 <script>
@@ -28,25 +28,25 @@ export default {
   name: 'editor',
   data () {
     return {
-      isEditing           : false,
-      input               : '',
-      dummyTextSetting    : 'Write something you want in Markdown',
-      fontColorSetting    : '#FFFFFF',
-      textEdgeStyleSetting: 0,
-      textEdgeColorSetting: '#000000',
+      isEditing: false,
+      input    : '',
     }
   },
+  props   : ['preferences'],
   computed: {
     compiledMarkdown () {
-      let markdownText = this.input.trim() || this.dummyTextSetting
+      let markdownText = this.input.trim() || this.preferences.dummyText
       return parser.render(markdownText)
+    },
+    placeholder () {
+      return this.dummyText
     },
     text () {
       let style = ''
       let regexColor = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/
-      let shadowColor = this.textEdgeColorSetting.trim()
-      let color = this.fontColorSetting.trim()
-      let edgeStyle = Number(this.textEdgeStyleSetting)
+      let shadowColor = this.preferences.textEdgeColor.trim()
+      let color = this.preferences.fontColor.trim()
+      let edgeStyle = Number(this.preferences.textEdgeStyle)
       if (regexColor.test(color)) {
         style += `color: ${color};`
       }
@@ -88,9 +88,7 @@ export default {
       let text = document.querySelector(`label[for=${id}]`).innerText
       let checkbox = document.getElementById(id)
       let checkState = !!checkbox.checked
-      // eslint-disable-next-line no-useless-escape
       let check = checkState ? '\\s' : 'x|X'
-      // eslint-disable-next-line no-useless-escape
       let before = new RegExp(`(\\s*)(\\*|-|\\+)(\\s*)\\[(${check})\\](${text})\\n`)
       let after = checkState ? '$1$2$3[x]$5\n' : '$1$2$3[ ]$5\n'
       this.input = this.input.replace(before, after)
@@ -99,10 +97,6 @@ export default {
   },
   mounted () {
     this.input = localStorage.getItem('input') || this.input
-    this.dummyTextSetting = localStorage.getItem('dummyText') || this.dummyTextSetting
-    this.fontColorSetting = localStorage.getItem('fontColor') || this.fontColorSetting
-    this.textEdgeStyleSetting = localStorage.getItem('textEdgeStyle') || this.textEdgeStyleSetting
-    this.textEdgeColorSetting = localStorage.getItem('textEdgeColor') || this.textEdgeColorSetting
   },
   components: {
     Background,

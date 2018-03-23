@@ -47,6 +47,7 @@ module.exports = {
     'no-array-constructor': 1,
     'quotes': [1, 'single'],
     'no-unused-vars': 2,
+    'no-useless-escape': 0,
     'space-after-keywords': 0,
     'space-before-blocks': [0, { 'functions': 'always' }],
     'space-infix-ops': 0,

@@ -1,33 +1,16 @@
 <template lang='pug'>
 .background(:style="bgColor")
-  img.img.object-fit(:src="bgFileUrlSetting" :style="filter" :class="{cover: isCover}")
+  img.img.object-fit(:src="preferences.bgFileUrl" :style="filter" :class="{cover: isCover}")
 </template>
 
 <script>
 export default {
-  name: 'background',
-  data () {
-    return {
-      bgColorSetting       : '#000000',
-      bgDisplayStyleSetting: 1,
-      bgFileUrlSetting     : 'https://source.unsplash.com/random',
-      filterSettings       : {
-        'brightness': 100,
-        'contrast'  : 100,
-        'saturate'  : 100,
-        'grayscale' : 0,
-        'sepia'     : 0,
-        'hue-rotate': 0,
-        'invert'    : 0,
-        'opacity'   : 60,
-        'blur'      : 0,
-      },
-    }
-  },
+  name    : 'background',
+  props   : ['preferences'],
   computed: {
     filter () {
       let filters = ''
-      Object.keys(this.filterSettings).forEach(key => {
+      Object.keys(this.preferences.filters).forEach(key => {
         let unit
         if (key === 'blur') {
           unit = 'px'
@@ -36,31 +19,17 @@ export default {
         } else {
           unit = '%'
         }
-        let value = this.filterSettings[key].toString().trim()
+        let value = this.preferences.filters[key].toString().trim()
         filters += `${key}(${value}${unit})`
       })
       return `filter: ${filters};`
     },
     bgColor () {
-      return `background-color: ${this.bgColorSetting.trim()}`
+      return `background-color: ${this.preferences.bgColor.trim()}`
     },
     isCover () {
-      return !!Number(this.bgDisplayStyleSetting)
+      return !!Number(this.preferences.bgDisplayStyle)
     },
-  },
-  mounted () {
-    this.bgFileUrlSetting = localStorage.getItem('bgFileUrl') || this.bgFileUrlSetting
-    this.bgDisplayStyleSetting = localStorage.getItem('bgDisplayStyle') || this.bgDisplayStyleSetting
-    this.bgColorSetting = localStorage.getItem('bgColor') || this.bgColorSetting
-    this.filterSettings.brightness = localStorage.getItem('filterBrightness') || this.filterSettings.brightness
-    this.filterSettings.contrast = localStorage.getItem('filterContrast') || this.filterSettings.contrast
-    this.filterSettings.saturate = localStorage.getItem('filterSaturate') || this.filterSettings.saturate
-    this.filterSettings.grayscale = localStorage.getItem('filterGrayscale') || this.filterSettings.grayscale
-    this.filterSettings.sepia = localStorage.getItem('filterSepia') || this.filterSettings.sepia
-    this.filterSettings['hue-rotate'] = localStorage.getItem('filterHueRotate') || this.filterSettings['hue-rotate']
-    this.filterSettings.invert = localStorage.getItem('filterInvert') || this.filterSettings.invert
-    this.filterSettings.opacity = localStorage.getItem('filterOpacity') || this.filterSettings.opacity
-    this.filterSettings.blur = localStorage.getItem('filterBlur') || this.filterSettings.blur
   },
 }
 </script>

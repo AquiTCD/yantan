@@ -29,31 +29,31 @@
       .column.grid-content
         h3 Image Filters
         .block
-          label Brightness: {{filterSettings.brightness}} % (0-500)
+          label Brightness: {{preferences.filters.brightness}} % (0-500)
           el-slider(:min="0" :max="500" v-model="brightness")
         .block
-          label Contrast: {{filterSettings.contrast}} % (0-500)
+          label Contrast: {{preferences.filters.contrast}} % (0-500)
           el-slider(:min="0" :max="500" v-model="contrast")
         .block
-          label Saturate: {{filterSettings.saturate}} % (0-100)
+          label Saturate: {{preferences.filters.saturate}} % (0-100)
           el-slider(:min="0" :max="100" v-model="saturate")
         .block
-          label Grayscale: {{filterSettings.grayscale}} % (0-100)
+          label Grayscale: {{preferences.filters.grayscale}} % (0-100)
           el-slider(:min="0" :max="100" v-model="grayscale")
         .block
-          label Sepia: {{filterSettings.sepia}} % (0-100)
+          label Sepia: {{preferences.filters.sepia}} % (0-100)
           el-slider(:min="0" :max="100" v-model="sepia")
         .block
-          label Hue-Rotate: {{filterSettings['hue-rotate']}} deg (0-360)
+          label Hue-Rotate: {{preferences.filters['hue-rotate']}} deg (0-360)
           el-slider(:min="0" :max="360" v-model="hueRotate")
         .block
-          label Invert: {{filterSettings.invert}} % (0-100)
+          label Invert: {{preferences.filters.invert}} % (0-100)
           el-slider(:min="0" :max="100" v-model="invert")
         .block
-          label Opacity: {{filterSettings.opacity}} % (0-100)
+          label Opacity: {{preferences.filters.opacity}} % (0-100)
           el-slider(:min="0" :max="100" v-model="opacity")
         .block
-          label Blur: {{filterSettings.blur}} px (0-20)
+          label Blur: {{preferences.filters.blur}} px (0-20)
           el-slider(:min="0" :max="20" v-model="blur")
     el-col(:span="8" :offset="1")
       .column.grid-content
@@ -87,192 +87,140 @@
 
 <script>
 export default {
-  name: 'preferences',
-  data () {
-    return {
-      bgColorSetting       : '#000000',
-      bgDisplayStyleSetting: 1,
-      bgFileUrlSetting     : 'https://source.unsplash.com/random',
-      filterSettings       : {
-        'brightness': 100,
-        'contrast'  : 100,
-        'saturate'  : 100,
-        'grayscale' : 0,
-        'sepia'     : 0,
-        'hue-rotate': 0,
-        'invert'    : 0,
-        'opacity'   : 60,
-        'blur'      : 0,
-      },
-      dummyTextSetting    : 'Write something you want in Markdown',
-      fontColorSetting    : '#FFFFFF',
-      textEdgeStyleSetting: 0,
-      textEdgeColorSetting: '#000000',
-    }
-  },
+  name    : 'preferences',
+  props   : ['preferences'],
   computed: {
     bgColor: {
       get () {
-        return this.bgColorSetting
+        return this.preferences.bgColor
       },
       set (val) {
-        this.bgColorSetting = val
-        localStorage.setItem('bgColor', val)
+        this.$emit('updatePreferences', 'bgColor', val)
       },
     },
     bgDisplayStyle: {
       get () {
-        return Number(this.bgDisplayStyleSetting)
+        return Number(this.preferences.bgDisplayStyle)
       },
       set (val) {
-        this.bgDisplayStyleSetting = val
-        localStorage.setItem('bgDisplayStyle', val)
+        this.$emit('updatePreferences', 'bgDisplayStyle', val)
       },
     },
     bgFileUrl: {
       get () {
-        return this.bgFileUrlSetting
+        return this.preferences.bgFileUrl
       },
       set (val) {
-        this.bgFileUrlSetting = val
-        localStorage.setItem('bgFileUrl', val)
+        this.$emit('updatePreferences', 'bgFileUrl', val)
       },
     },
     brightness: {
       get () {
-        return Number(this.filterSettings.brightness)
+        return Number(this.preferences.filters.brightness)
       },
       set (val) {
-        this.filterSettings.brightness = val
-        localStorage.setItem('filterBrightness', val)
+        this.$emit('updatePreferences', 'filters.brightness', val)
       },
     },
     contrast: {
       get () {
-        return Number(this.filterSettings.contrast)
+        return Number(this.preferences.filters.contrast)
       },
       set (val) {
-        this.filterSettings.contrast = val
-        localStorage.setItem('filterContrast', val)
+        this.$emit('updatePreferences', 'filters.contrast', val)
       },
     },
     saturate: {
       get () {
-        return Number(this.filterSettings.saturate)
+        return Number(this.preferences.filters.saturate)
       },
       set (val) {
-        this.filterSettings.saturate = val
-        localStorage.setItem('filterSaturate', val)
+        this.$emit('updatePreferences', 'filters.saturate', val)
       },
     },
     grayscale: {
       get () {
-        return Number(this.filterSettings.grayscale)
+        return Number(this.preferences.filters.grayscale)
       },
       set (val) {
-        this.filterSettings.grayscale = val
-        localStorage.setItem('filterGrayscale', val)
+        this.$emit('updatePreferences', 'filters.grayscale', val)
       },
     },
     sepia: {
       get () {
-        return Number(this.filterSettings.sepia)
+        return Number(this.preferences.filters.sepia)
       },
       set (val) {
-        this.filterSettings.sepia = val
-        localStorage.setItem('filterSepia', val)
+        this.$emit('updatePreferences', 'filters.sepia', val)
       },
     },
     hueRotate: {
       get () {
-        return Number(this.filterSettings['hue-rotate'])
+        return Number(this.preferences.filters['hue-rotate'])
       },
       set (val) {
-        this.filterSettings['hue-rotate'] = val
-        localStorage.setItem('filterHueRotate', val)
+        this.$emit('updatePreferences', 'filters.hue-rotate', val)
       },
     },
     invert: {
       get () {
-        return Number(this.filterSettings.invert)
+        return Number(this.preferences.filters.invert)
       },
       set (val) {
-        this.filterSettings.invert = val
-        localStorage.setItem('filterInvert', val)
+        this.$emit('updatePreferences', 'filters.invert', val)
       },
     },
     opacity: {
       get () {
-        return Number(this.filterSettings.opacity)
+        return Number(this.preferences.filters.opacity)
       },
       set (val) {
-        this.filterSettings.opacity = val
-        localStorage.setItem('filterOpacity', val)
+        this.$emit('updatePreferences', 'filters.opacity', val)
       },
     },
     blur: {
       get () {
-        return Number(this.filterSettings.blur)
+        return Number(this.preferences.filters.blur)
       },
       set (val) {
-        this.filterSettings.blur = val
-        localStorage.setItem('filterBlur', val)
+        this.$emit('updatePreferences', 'filters.blur', val)
       },
     },
     dummyText: {
       get () {
-        return this.dummyTextSetting
+        return this.preferences.dummyText
       },
       set (val) {
-        this.dummyTextSetting = val
-        localStorage.setItem('dummyText', val)
+        this.$emit('updatePreferences', 'dummyText', val)
       },
     },
     fontColor: {
       get () {
-        return this.fontColorSetting
+        return this.preferences.fontColor
       },
       set (val) {
-        this.fontColorSetting = val
+        this.$emit('updatePreferences', 'fontColor', val)
         localStorage.setItem('fontColor', val)
       },
     },
     textEdgeStyle: {
       get () {
-        return Number(this.textEdgeStyleSetting)
+        return Number(this.preferences.textEdgeStyle)
       },
       set (val) {
-        this.textEdgeStyleSetting = val
+        this.$emit('updatePreferences', 'textEdgeStyle', val)
         localStorage.setItem('textEdgeStyle', val)
       },
     },
     textEdgeColor: {
       get () {
-        return this.textEdgeColorSetting
+        return this.preferences.textEdgeColor
       },
       set (val) {
-        this.textEdgeColorSetting = val
+        this.$emit('updatePreferences', 'textEdgeColor', val)
         localStorage.setItem('textEdgeColor', val)
       },
     },
-  },
-  mounted () {
-    this.bgFileUrlSetting = localStorage.getItem('bgFileUrl') || this.bgFileUrlSetting
-    this.bgDisplayStyleSetting = localStorage.getItem('bgDisplayStyle') || this.bgDisplayStyleSetting
-    this.bgColorSetting = localStorage.getItem('bgColor') || this.bgColorSetting
-    this.filterSettings.brightness = localStorage.getItem('filterBrightness') || this.filterSettings.brightness
-    this.filterSettings.contrast = localStorage.getItem('filterContrast') || this.filterSettings.contrast
-    this.filterSettings.saturate = localStorage.getItem('filterSaturate') || this.filterSettings.saturate
-    this.filterSettings.grayscale = localStorage.getItem('filterGrayscale') || this.filterSettings.grayscale
-    this.filterSettings.sepia = localStorage.getItem('filterSepia') || this.filterSettings.sepia
-    this.filterSettings['hue-rotate'] = localStorage.getItem('filterHueRotate') || this.filterSettings['hue-rotate']
-    this.filterSettings.invert = localStorage.getItem('filterInvert') || this.filterSettings.invert
-    this.filterSettings.opacity = localStorage.getItem('filterOpacity') || this.filterSettings.opacity
-    this.filterSettings.blur = localStorage.getItem('filterBlur') || this.filterSettings.blur
-    this.dummyTextSetting = localStorage.getItem('dummyText') || this.dummyTextSetting
-    this.fontColorSetting = localStorage.getItem('fontColor') || this.fontColorSetting
-    this.textEdgeStyleSetting = localStorage.getItem('textEdgeStyle') || this.textEdgeStyleSetting
-    this.textEdgeColorSetting = localStorage.getItem('textEdgeColor') || this.textEdgeColorSetting
   },
 }
 </script>

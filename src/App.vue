@@ -1,16 +1,55 @@
 <template lang='pug'>
   #app
     transition(name="page")
-      router-view.main/
+      router-view.main(:preferences='preferences' @updatePreferences="(key, value) => updatePreferences(key, value)")/
     Menu.menu
 </template>
 
 <script>
 import Menu from '@/components/Menu.vue'
 export default {
-  name      : 'App',
+  name: 'App',
+  data () {
+    return {
+      preferences: {
+        bgColor       : '#000000',
+        bgDisplayStyle: 1,
+        bgFileUrl     : 'https://source.unsplash.com/random',
+        filters       : {
+          brightness  : 100,
+          contrast    : 100,
+          saturate    : 100,
+          grayscale   : 0,
+          sepia       : 0,
+          'hue-rotate': 0,
+          invert      : 0,
+          opacity     : 60,
+          blur        : 0,
+        },
+        dummyText    : 'Write something you want in Markdown',
+        fontColor    : '#FFFFFF',
+        textEdgeStyle: 0,
+        textEdgeColor: '#000000',
+      },
+    }
+  },
+  methods: {
+    updatePreferences (key, value){
+      const isFilter = /^filters\./
+      if (isFilter.test(key)) {
+        let filter = key.replace(/^filters\./g, '')
+        this.preferences.filters[filter] = value
+      } else {
+        this.preferences[key] = value
+      }
+      localStorage.setItem('preferences', JSON.stringify(this.preferences))
+    },
+  },
   components: {
     Menu,
+  },
+  mounted () {
+    this.preferences = JSON.parse(localStorage.getItem('preferences')) || this.preferences
   },
 }
 </script>
