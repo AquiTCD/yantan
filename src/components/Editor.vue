@@ -1,21 +1,34 @@
 <template lang='pug'>
-.editor.markdown-body(@keyup.ctrl.enter="toggleEditor()" @keyup.esc="toggleEditor()")
-  .notearea(:class="{dummy: !input.trim()}" v-html="compiledMarkdown" @click="toggleEditor()" v-if="!isEditiong" :style="text")
-  .textarea(v-else)
-    textarea(:value="input" @input="update" :placeholder="dummyTextSetting")
-    el-button.closeBtn.translucent(v-if="isEditiong" icon="el-icon-circle-close-outline" size="mini" round  @click="toggleEditor()") Close Editor
+.editor.markdown-body(@click="closeEditor($event)")
+  .notearea(v-html="compiledMarkdown" @click.stop="clickEditor($event)" v-if="!isEditing" :style="text")
+  .textarea(v-else @click.stop="openEditor($event)")
+    textarea(:value="input" @input="update" :placeholder="dummyTextSetting" @keyup.esc="closeEditor($event)" @keyup.ctrl.enter="closeEditor($event)")
   Background
 </template>
 
 <script>
 import _ from 'lodash'
-import marked from 'marked'
+import md from 'markdown-it'
+import emoji from 'markdown-it-emoji'
+import taskLists from 'markdown-it-task-lists'
 import Background from '@/components/Background.vue'
+let parser = md({
+  html       : true,
+  breaks     : true,
+  linkify    : true,
+  typographer: true,
+})
+  .use(emoji)
+  .use(taskLists, {
+    enabled   : true,
+    label     : true,
+    labelAfter: true,
+  })
 export default {
   name: 'editor',
   data () {
     return {
-      isEditiong          : false,
+      isEditing           : false,
       input               : '',
       dummyTextSetting    : 'Write something you want in Markdown',
       fontColorSetting    : '#FFFFFF',
@@ -26,7 +39,7 @@ export default {
   computed: {
     compiledMarkdown () {
       let markdownText = this.input.trim() || this.dummyTextSetting
-      return marked(markdownText, { gfm: true, tables: true, breaks: true, sanitize: true })
+      return parser.render(markdownText)
     },
     text () {
       let style = ''
@@ -52,8 +65,36 @@ export default {
       this.input = e.target.value
       localStorage.setItem('input', e.target.value)
     }, 300),
-    toggleEditor () {
-      this.isEditiong = !this.isEditiong
+    toggleEditor (event) {
+      return this.isEditing ? this.closeEditor(event) : this.openEditor(event)
+    },
+    openEditor (event) {
+      return (this.isEditing = true)
+    },
+    closeEditor (event) {
+      return (this.isEditing = false)
+    },
+    clickEditor (event) {
+      let src = event.srcElement
+      if (src.tagName === 'INPUT') {
+        return this.toggleCheckbox(src.id)
+      } else if (src.tagName === 'A' || src.tagName === 'LABEL') {
+        return event.stopPropagation()
+      } else {
+        return this.openEditor(event)
+      }
+    },
+    toggleCheckbox (id) {
+      let text = document.querySelector(`label[for=${id}]`).innerText
+      let checkbox = document.getElementById(id)
+      let checkState = !!checkbox.checked
+      // eslint-disable-next-line no-useless-escape
+      let check = checkState ? '\\s' : 'x|X'
+      // eslint-disable-next-line no-useless-escape
+      let before = new RegExp(`(\\s*)(\\*|-|\\+)(\\s*)\\[(${check})\\](${text})\\n`)
+      let after = checkState ? '$1$2$3[x]$5\n' : '$1$2$3[ ]$5\n'
+      this.input = this.input.replace(before, after)
+      localStorage.setItem('input', this.input)
     },
   },
   mounted () {
@@ -73,30 +114,22 @@ export default {
 .editor
   height: 100vh
   width: 100vw
-.textarea
+.textarea, .notearea
   width: 61vw
   height: 61vh
   min-height: 200px
   z-index: 100
-  position: relative
-  textarea
-    width: 100%
-    height: 100%
-    font-size: 18px
-    line-height: 1.5
-    resize: none
-    padding: 0.39em
-    border: 1px solid #ccc
-    border-radius: 4px
-.notearea
-  width: 61vw
-  height: 61vh
-  z-index: 100
-.dummy
+textarea
+  width: 100%
+  height: 100%
+  font-size: 18px
+  line-height: 1.5
+  resize: none
+  padding: 0.39em
+  border: 1px solid #ccc
   border-radius: 4px
-.closeBtn
-  z-index: 101
-  position: absolute
-  right: 0.39em
-  bottom: 0.39em
+</style>
+<style lang="stylus">
+.task-list-item-checkbox:checked + .task-list-item-label
+  text-decoration: line-through
 </style>

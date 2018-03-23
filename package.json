@@ -26,7 +26,9 @@
     "element-ui": "^2.2.2",
     "github-markdown-css": "^2.10.0",
     "lodash": "^4.17.5",
-    "marked": "^0.3.17",
+    "markdown-it": "^8.4.1",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-task-lists": "^2.1.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
