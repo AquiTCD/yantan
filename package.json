@@ -11,8 +11,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js",
-    "publish": "npm run build && zip -r yantan.zip dist/",
+    "build": "node build/build.js && zip -r yantan.zip dist/",
     "precommit": "lint-staged"
   },
   "lint-staged": {
