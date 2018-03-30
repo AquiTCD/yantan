@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while read local_ref local_sha1 remote_ref remote_sha1
+do
+  for branch in "master" "production"; do
+    if [[ "${remote_ref##refs/heads/}" = "${branch}" ]]; then
+    echo "WARNING: Pushing to important branch, are you sure? [y/N]"
+
+      exec < /dev/tty
+      read ANSWER
+
+      case $ANSWER in
+        "Y" | "y" | "yes" | "Yes" | "YES" ) echo "OK: Pushing starts...";;
+        * ) echo "Pushing canceled";exit 1;;
+      esac
+      exit 0
+    fi
+  done
+done
