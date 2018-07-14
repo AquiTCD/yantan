@@ -6,16 +6,16 @@
 
 <script>
 export default {
-  name    : 'menus',
+  name: 'Menus',
   computed: {
-    isEditor () {
+    isEditor() {
       return this.$route.name === 'editor'
     },
   },
   methods: {
-    movePageTo (page) {
+    movePageTo(page) {
       this.$router.push({
-        name  : page,
+        name: page,
         params: {},
       })
     },
@@ -24,9 +24,12 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-.translucent
-  transition-duration: 0.4s
-  opacity: 0.2
-  &:hover
-    opacity: 1
+.translucent {
+  transition-duration: 0.4s;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 1;
+  }
+}
 </style>

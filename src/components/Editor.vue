@@ -12,41 +12,71 @@ import md from 'markdown-it'
 import emoji from 'markdown-it-emoji'
 import taskLists from 'markdown-it-task-lists'
 import Background from '@/components/Background.vue'
-let parser = md({
-  html       : true,
-  breaks     : true,
-  linkify    : true,
+const parser = md({
+  html: true,
+  breaks: true,
+  linkify: true,
   typographer: true,
 })
   .use(emoji)
   .use(taskLists, {
-    enabled   : true,
-    label     : true,
+    enabled: true,
+    label: true,
     labelAfter: true,
   })
 export default {
-  name: 'editor',
-  data () {
+  name: 'Editor',
+  components: {
+    Background,
+  },
+  props: {
+    preferences: {
+      type: Object,
+      default() {
+    return {
+          bgColor: '#000000',
+          bgDisplayStyle: 1,
+          bgFileUrl: 'https://source.unsplash.com/random',
+          filters: {
+            brightness: 100,
+            contrast: 100,
+            saturate: 100,
+            grayscale: 0,
+            sepia: 0,
+            'hue-rotate': 0,
+            invert: 0,
+            opacity: 60,
+            blur: 0,
+          },
+          dummyText: 'Write something you want in Markdown',
+          fontColor: '#FFFFFF',
+          textEdgeStyle: 0,
+          textEdgeColor: '#000000',
+        }
+      },
+      required: true,
+    },
+  },
+  data() {
     return {
       isEditing: false,
-      input    : '',
+      input: '',
     }
   },
-  props   : ['preferences'],
   computed: {
-    compiledMarkdown () {
-      let markdownText = this.input.trim() || this.preferences.dummyText
+    compiledMarkdown() {
+      const markdownText = this.input.trim() || this.preferences.dummyText
       return parser.render(markdownText)
     },
-    placeholder () {
+    placeholder() {
       return this.dummyText
     },
-    text () {
+    text() {
       let style = ''
-      let regexColor = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/
-      let shadowColor = this.preferences.textEdgeColor.trim()
-      let color = this.preferences.fontColor.trim()
-      let edgeStyle = Number(this.preferences.textEdgeStyle)
+      const regexColor = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/
+      const shadowColor = this.preferences.textEdgeColor.trim()
+      const color = this.preferences.fontColor.trim()
+      const edgeStyle = Number(this.preferences.textEdgeStyle)
       if (regexColor.test(color)) {
         style += `color: ${color};`
       }
@@ -60,22 +90,25 @@ export default {
       return style || false
     },
   },
+  mounted() {
+    this.input = localStorage.getItem('input') || this.input
+  },
   methods: {
-    update: _.debounce(function (e) {
+    update: _.debounce(function(e) {
       this.input = e.target.value
       localStorage.setItem('input', e.target.value)
     }, 300),
-    toggleEditor (event) {
+    toggleEditor(event) {
       return this.isEditing ? this.closeEditor(event) : this.openEditor(event)
     },
-    openEditor (event) {
+    openEditor(event) {
       return (this.isEditing = true)
     },
-    closeEditor (event) {
+    closeEditor(event) {
       return (this.isEditing = false)
     },
-    clickEditor (event) {
-      let src = event.srcElement
+    clickEditor(event) {
+      const src = event.srcElement
       if (src.tagName === 'INPUT') {
         return this.toggleCheckbox(src.id)
       } else if (src.tagName === 'A' || src.tagName === 'LABEL') {
@@ -84,22 +117,18 @@ export default {
         return this.openEditor(event)
       }
     },
-    toggleCheckbox (id) {
-      let text = document.querySelector(`label[for=${id}]`).innerText
-      let checkbox = document.getElementById(id)
-      let checkState = !!checkbox.checked
-      let check = checkState ? '\\s' : 'x|X'
-      let before = new RegExp(`(\\s*)(\\*|-|\\+)(\\s*)\\[(${check})\\](${text})\\n`)
-      let after = checkState ? '$1$2$3[x]$5\n' : '$1$2$3[ ]$5\n'
+    toggleCheckbox(id) {
+      const text = document.querySelector(`label[for=${id}]`).innerText
+      const checkbox = document.getElementById(id)
+      const checkState = !!checkbox.checked
+      const check = checkState ? '\\s' : 'x|X'
+      const before = new RegExp(
+        `(\\s*)(\\*|-|\\+)(\\s*)\\[(${check})\\](${text})\\n`
+      )
+      const after = checkState ? '$1$2$3[x]$5\n' : '$1$2$3[ ]$5\n'
       this.input = this.input.replace(before, after)
       localStorage.setItem('input', this.input)
     },
-  },
-  mounted () {
-    this.input = localStorage.getItem('input') || this.input
-  },
-  components: {
-    Background,
   },
 }
 </script>

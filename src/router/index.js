@@ -8,13 +8,13 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path     : '/',
-      name     : 'editor',
+      path: '/',
+      name: 'editor',
       component: Editor,
     },
     {
-      path     : '/preferences',
-      name     : 'preferences',
+      path: '/preferences',
+      name: 'preferences',
       component: Preferences,
     },
   ],

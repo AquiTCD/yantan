@@ -87,136 +87,163 @@
 
 <script>
 export default {
-  name    : 'preferences',
-  props   : ['preferences'],
+  name: 'Preferences',
+  props: {
+    preferences: {
+      type: Object,
+      default() {
+        return {
+          bgColor: '#000000',
+          bgDisplayStyle: 1,
+          bgFileUrl: 'https://source.unsplash.com/random',
+          filters: {
+            brightness: 100,
+            contrast: 100,
+            saturate: 100,
+            grayscale: 0,
+            sepia: 0,
+            'hue-rotate': 0,
+            invert: 0,
+            opacity: 60,
+            blur: 0,
+          },
+          dummyText: 'Write something you want in Markdown',
+          fontColor: '#FFFFFF',
+          textEdgeStyle: 0,
+          textEdgeColor: '#000000',
+        }
+      },
+      required: true,
+    },
+  },
   computed: {
     bgColor: {
-      get () {
+      get() {
         return this.preferences.bgColor
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'bgColor', val)
       },
     },
     bgDisplayStyle: {
-      get () {
+      get() {
         return Number(this.preferences.bgDisplayStyle)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'bgDisplayStyle', val)
       },
     },
     bgFileUrl: {
-      get () {
+      get() {
         return this.preferences.bgFileUrl
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'bgFileUrl', val)
       },
     },
     brightness: {
-      get () {
+      get() {
         return Number(this.preferences.filters.brightness)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.brightness', val)
       },
     },
     contrast: {
-      get () {
+      get() {
         return Number(this.preferences.filters.contrast)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.contrast', val)
       },
     },
     saturate: {
-      get () {
+      get() {
         return Number(this.preferences.filters.saturate)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.saturate', val)
       },
     },
     grayscale: {
-      get () {
+      get() {
         return Number(this.preferences.filters.grayscale)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.grayscale', val)
       },
     },
     sepia: {
-      get () {
+      get() {
         return Number(this.preferences.filters.sepia)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.sepia', val)
       },
     },
     hueRotate: {
-      get () {
+      get() {
         return Number(this.preferences.filters['hue-rotate'])
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.hue-rotate', val)
       },
     },
     invert: {
-      get () {
+      get() {
         return Number(this.preferences.filters.invert)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.invert', val)
       },
     },
     opacity: {
-      get () {
+      get() {
         return Number(this.preferences.filters.opacity)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.opacity', val)
       },
     },
     blur: {
-      get () {
+      get() {
         return Number(this.preferences.filters.blur)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'filters.blur', val)
       },
     },
     dummyText: {
-      get () {
+      get() {
         return this.preferences.dummyText
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'dummyText', val)
       },
     },
     fontColor: {
-      get () {
+      get() {
         return this.preferences.fontColor
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'fontColor', val)
         localStorage.setItem('fontColor', val)
       },
     },
     textEdgeStyle: {
-      get () {
+      get() {
         return Number(this.preferences.textEdgeStyle)
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'textEdgeStyle', val)
         localStorage.setItem('textEdgeStyle', val)
       },
     },
     textEdgeColor: {
-      get () {
+      get() {
         return this.preferences.textEdgeColor
       },
-      set (val) {
+      set(val) {
         this.$emit('updatePreferences', 'textEdgeColor', val)
         localStorage.setItem('textEdgeColor', val)
       },
