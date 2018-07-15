@@ -12,14 +12,22 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js && zip -r yantan.zip dist/",
+    "cz": "git-cz",
     "precommit": "lint-staged",
-    "prepush": "sh push-protection"
+    "prepush": "sh push-protection",
+    "stash-unstaged": "git stash save -k 'pre-linting-stash' >> /dev/null",
+    "lint-staged": "lint-staged || (npm run pop-stash >> /dev/null && exit 1",
+    "pop-stash": "git stash && git stash pop stash@{1} && git read-tree stash && git stash drop"
   },
+  "pre-commit": [
+    "stash-unstaged",
+    "lint-staged",
+    "pop-stash"
+  ],
   "lint-staged": {
-    "*.{js, vue}": [
-      "prettier-eslint --write",
-      "eslint",
-      "git add"
+    "*.{js,vue}": [
+      "eslint --fix",
+      "eslint"
     ]
   },
   "dependencies": {
@@ -51,16 +59,19 @@
     "backstopjs": "^3.1.19",
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
+    "commitizen": "^2.10.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^4.15.0",
-    "eslint-cli": "^1.1.1",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-plugin-vue": "^4.0.0",
@@ -82,9 +93,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
-    "prettier": "^1.11.1",
-    "prettier-eslint": "^8.8.1",
-    "prettier-eslint-cli": "^4.7.1",
+    "prettier": "^1.13.7",
     "pug": "^2.0.1",
     "pug-loader": "^2.3.0",
     "rimraf": "^2.6.0",

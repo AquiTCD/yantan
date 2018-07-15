@@ -5,10 +5,37 @@
 
 <script>
 export default {
-  name    : 'background',
-  props   : ['preferences'],
+  name: 'Background',
+  props: {
+    preferences: {
+      type: Object,
+      default() {
+        return {
+          bgColor: '#000000',
+          bgDisplayStyle: 1,
+          bgFileUrl: 'https://source.unsplash.com/random',
+          filters: {
+            brightness: 100,
+            contrast: 100,
+            saturate: 100,
+            grayscale: 0,
+            sepia: 0,
+            'hue-rotate': 0,
+            invert: 0,
+            opacity: 60,
+            blur: 0,
+          },
+          dummyText: 'Write something you want in Markdown',
+          fontColor: '#FFFFFF',
+          textEdgeStyle: 0,
+          textEdgeColor: '#000000',
+        }
+      },
+      required: true,
+    },
+  },
   computed: {
-    filter () {
+    filter() {
       let filters = ''
       Object.keys(this.preferences.filters).forEach(key => {
         let unit
@@ -19,15 +46,15 @@ export default {
         } else {
           unit = '%'
         }
-        let value = this.preferences.filters[key].toString().trim()
+        const value = this.preferences.filters[key].toString().trim()
         filters += `${key}(${value}${unit})`
       })
       return `filter: ${filters};`
     },
-    bgColor () {
+    bgColor() {
       return `background-color: ${this.preferences.bgColor.trim()}`
     },
-    isCover () {
+    isCover() {
       return !!Number(this.preferences.bgDisplayStyle)
     },
   },
