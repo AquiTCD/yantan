@@ -95,6 +95,7 @@ export default {
         return {
           bgColor: '#000000',
           bgDisplayStyle: 1,
+          bgImages: [],
           bgFileUrl: 'https://source.unsplash.com/random',
           filters: {
             brightness: 100,
