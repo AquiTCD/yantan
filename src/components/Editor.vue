@@ -33,9 +33,10 @@ export default {
     preferences: {
       type: Object,
       default() {
-    return {
+        return {
           bgColor: '#000000',
           bgDisplayStyle: 1,
+          bgImages: [],
           bgFileUrl: 'https://source.unsplash.com/random',
           filters: {
             brightness: 100,
@@ -137,22 +138,19 @@ export default {
 .editor
   height: 100vh
   width: 100vw
-.textarea, .notearea
-  width: 61vw
+.textarea,
+.notearea
   height: 61vh
   min-height: 200px
+  width: 61vw
   z-index: 100
 textarea
-  width: 100%
-  height: 100%
-  font-size: 18px
-  line-height: 1.5
-  resize: none
-  padding: 0.39em
   border: 1px solid #ccc
   border-radius: 4px
-</style>
-<style lang="stylus">
-.task-list-item-checkbox:checked + .task-list-item-label
-  text-decoration: line-through
+  font-size: 18px
+  height: 100%
+  line-height: 1.5
+  padding: 0.39em
+  resize: none
+  width: 100%
 </style>

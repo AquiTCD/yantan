@@ -17,6 +17,7 @@ export default {
       preferences: {
         bgColor: '#000000',
         bgDisplayStyle: 1,
+        bgImages: [],
         bgFileUrl: 'https://source.unsplash.com/random',
         filters: {
           brightness: 100,
@@ -56,56 +57,42 @@ export default {
 </script>
 
 <style lang='stylus'>
-@import './css/style';
+@import './css/style'
 
-html {
-  background: transparent;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-body {
-  width: 100vw;
-  height: auto;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-#app {
-  background: transparent;
-}
-
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu {
-  position: fixed;
-  right: 15px;
-  bottom: 15px;
-  z-index: 101;
-}
-
-.page-enter-active, .page-leave-active {
-  transition: all 0.4s;
-}
-
-.page-enter {
-  opacity: 0;
-}
-
-.page-leave-to {
-  opacity: 0;
-}
-
-.page-leave, .page-enter-to {
-  margin-top: 0;
-  margin-bottom: 0;
-  opacity: 1;
-}
+html
+  background: transparent
+  &::-webkit-scrollbar
+    display: none
+body
+  height: auto
+  margin: 0
+  min-height: 100vh
+  padding: 0
+  width: 100vw
+#app
+  background: transparent
+.main
+  align-items: center
+  display: flex
+  justify-content: center
+  position: fixed
+.menu
+  bottom: 15px
+  position: fixed
+  right: 15px
+  z-index: 101
+.page-enter-active,
+.page-leave-active
+  transition: all 0.4s
+.page-enter
+  opacity: 0
+.page-leave-to
+  opacity: 0
+.page-leave,
+.page-enter-to
+  margin-bottom: 0
+  margin-top: 0
+  opacity: 1
+.task-list-item-checkbox:checked + .task-list-item-label
+  text-decoration: line-through
 </style>

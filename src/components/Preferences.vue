@@ -20,11 +20,17 @@
             el-radio(:label="1") cover
             el-radio(:label="0") contain
         .block
-          label Image URL:
-          el-input(
-            placeholder="http://www.example.com/sample.jpg"
-            v-model.lazy.trim="bgFileUrl"
-          )
+          label Images:
+          el-upload.upload(
+            action=""
+            :on-change="handleAdd"
+            :on-remove="handleRemove"
+            :file-list="preferences.bgImages"
+            list-type="picture"
+            accept="image/*"
+            :auto-upload="false")
+            el-button(size="small" type="primary") Select jpeg/png
+            div(slot="tip" class="el-upload__tip") Multipul files are shown randomly.
     el-col(:span="7")
       .column.grid-content
         h3 Image Filters
@@ -86,6 +92,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   name: 'Preferences',
   props: {
@@ -95,6 +102,7 @@ export default {
         return {
           bgColor: '#000000',
           bgDisplayStyle: 1,
+          bgImages: [],
           bgFileUrl: 'https://source.unsplash.com/random',
           filters: {
             brightness: 100,
@@ -137,8 +145,18 @@ export default {
       get() {
         return this.preferences.bgFileUrl
       },
-      set(val) {
+      async set(val) {
         this.$emit('updatePreferences', 'bgFileUrl', val)
+        this.cacheBgImage()
+      },
+    },
+    isCacheBgImage: {
+      get() {
+        return this.preferences.isCacheBgImage
+      },
+      async set(val) {
+        this.$emit('updatePreferences', 'isCacheBgImage', val)
+        this.cacheBgImage()
       },
     },
     brightness: {
@@ -249,14 +267,54 @@ export default {
       },
     },
   },
+  methods: {
+    handleRemove(file, fileList) {
+      this.$emit('updatePreferences', 'bgImages', fileList)
+    },
+    async handleAdd(file, fileList) {
+      if (/^image\/(png|jpeg)$/.test(file.raw.type) === false) {
+        return false
+      }
+      const convertedFile = await this.imageConvert(file)
+      const images = _.map(fileList, f => {
+        if (f.uid === convertedFile.uid) {
+          return convertedFile
+        } else {
+          return f
+        }
+      })
+      this.$emit('updatePreferences', 'bgImages', images)
+    },
+    async imageConvert(file) {
+      let srcData = file.url
+      const fileReader = new FileReader()
+      function loadImg() {
+        return new Promise((resolve, reject) => {
+          fileReader.onload = function(fileLoadedEvent) {
+            srcData = fileLoadedEvent.target.result
+            resolve(srcData)
+          }
+        })
+      }
+      await fileReader.readAsDataURL(file.raw)
+      await loadImg()
+      const convertedFile = {
+        uid: file.uid,
+        name: file.name,
+        status: 'success',
+        url: srcData,
+      }
+      return convertedFile
+    },
+  },
 }
 </script>
 
 <style lang='stylus' scoped>
 .preferences
   display: block
-  width: 100vw
   padding: 15px 30px
+  width: 100vw
 .title
   text-align: center
 .column

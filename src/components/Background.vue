@@ -1,6 +1,6 @@
 <template lang='pug'>
 .background(:style="bgColor")
-  img.img.object-fit(:src="preferences.bgFileUrl" :style="filter" :class="{cover: isCover}")
+  img.img.object-fit(:src="bgImage" :style="filter" :class="{cover: isCover}")
 </template>
 
 <script>
@@ -13,6 +13,7 @@ export default {
         return {
           bgColor: '#000000',
           bgDisplayStyle: 1,
+          bgImages: [],
           bgFileUrl: 'https://source.unsplash.com/random',
           filters: {
             brightness: 100,
@@ -57,21 +58,34 @@ export default {
     isCover() {
       return !!Number(this.preferences.bgDisplayStyle)
     },
+    bgImage() {
+      // transparent image 1x1 as dummy
+      const dummy =
+        'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='
+      try {
+        const max = this.preferences.bgImages.length - 1
+        const randRange = (min, max) =>
+          Math.floor(Math.random() * (max - min + 1) + min)
+        return this.preferences.bgImages[randRange(0, max)].url
+      } catch (err) {
+        return dummy
+      }
+    },
   },
 }
 </script>
 
 <style lang='stylus' scoped>
 .background
-  position: fixed
   height: 100vh
+  position: fixed
   width: 100vw
 .overlay
-  width: 100%
   height: 100%
+  width: 100%
 .img
-  width: 100%
   height: 100%
+  width: 100%
 .object-fit
   object-fit: contain
 .object-fit.cover
