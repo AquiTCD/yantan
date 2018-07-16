@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "YANTAN - NewTab as Markdown NotePad",
+  "description":
+    "Yet Another NewTab as Notes - NewTab as Markdown NotePad with Your Favorite Background Image",
+  "version": "{{version}}",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": ["management"]
+}
