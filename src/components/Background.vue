@@ -70,22 +70,22 @@ export default {
       } catch (err) {
         return dummy
       }
-  },
+    },
   },
 }
 </script>
 
 <style lang='stylus' scoped>
 .background
-  position: fixed
   height: 100vh
+  position: fixed
   width: 100vw
 .overlay
-  width: 100%
   height: 100%
+  width: 100%
 .img
-  width: 100%
   height: 100%
+  width: 100%
 .object-fit
   object-fit: contain
 .object-fit.cover

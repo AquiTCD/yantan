@@ -274,7 +274,7 @@ export default {
     async handleAdd(file, fileList) {
       if (/^image\/(png|jpeg)$/.test(file.raw.type) === false) {
         return false
-}
+      }
       const convertedFile = await this.imageConvert(file)
       const images = _.map(fileList, f => {
         if (f.uid === convertedFile.uid) {
@@ -313,8 +313,8 @@ export default {
 <style lang='stylus' scoped>
 .preferences
   display: block
-  width: 100vw
   padding: 15px 30px
+  width: 100vw
 .title
   text-align: center
 .column

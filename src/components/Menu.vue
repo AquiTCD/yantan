@@ -24,12 +24,9 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-.translucent {
-  transition-duration: 0.4s;
-  opacity: 0.2;
-
-  &:hover {
-    opacity: 1;
-  }
-}
+.translucent
+  opacity: 0.2
+  transition-duration: 0.4s
+  &:hover
+    opacity: 1
 </style>
