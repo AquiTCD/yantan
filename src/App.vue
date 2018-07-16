@@ -75,6 +75,7 @@ body
   align-items: center
   display: flex
   justify-content: center
+  position: fixed
 .menu
   bottom: 15px
   position: fixed
