@@ -9,10 +9,8 @@
         h2 Background
         .block
           label Color:
-          el-input(
-            placeholder="#000000"
-            v-model.lazy.trim="bgColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="bgColor")
         .block
           label Image Display Style:
           br
@@ -72,10 +70,8 @@
           )
         .block
           label Font Color:
-          el-input(
-            placeholder="#FFFFFF"
-            v-model.lazy.trim="fontColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="fontColor")
         .block
           label Text Edge Style:
           br
@@ -85,10 +81,8 @@
             el-radio(:label="2") Bold
         .block
           label Text Edge Color:
-          el-input(
-            placeholder="#000000"
-            v-model.lazy.trim="textEdgeColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="textEdgeColor")
 </template>
 
 <script>
