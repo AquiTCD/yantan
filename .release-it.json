@@ -5,9 +5,10 @@
   "buildCommand":
     "sed -e 's/{{version}}/${version}/g' manifest.json > static/manifest.json && npm run build && zip -r yantan-v${version}.zip dist",
   "afterReleaseCommand":
-    "rmraf yantan-v${version}.zip && echo Successfully released ${version} to ${dist.repo}.",
+    "rimraf yantan-v${version}.zip && echo Successfully released ${version} to ${dist.repo}.",
   "src": {
-    "tagName": "v%s"
+    "tagName": "v%s",
+    "pushArgs": "--no-verify"
   },
   "github": {
     "release": true,
