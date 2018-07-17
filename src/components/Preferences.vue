@@ -9,14 +9,12 @@
         h2 Background
         .block
           label Color:
-          el-input(
-            placeholder="#000000"
-            v-model.lazy.trim="bgColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="bgColor")
         .block
           label Image Display Style:
           br
-          el-radio-group(v-model="bgDisplayStyle")
+          el-radio-group(v-model.lazy="bgDisplayStyle")
             el-radio(:label="1") cover
             el-radio(:label="0") contain
         .block
@@ -36,31 +34,31 @@
         h3 Image Filters
         .block
           label Brightness: {{preferences.filters.brightness}} % (0-500)
-          el-slider(:min="0" :max="500" v-model="brightness")
+          el-slider(:min="0" :max="500" v-model.lazy="brightness")
         .block
           label Contrast: {{preferences.filters.contrast}} % (0-500)
-          el-slider(:min="0" :max="500" v-model="contrast")
+          el-slider(:min="0" :max="500" v-model.lazy="contrast")
         .block
           label Saturate: {{preferences.filters.saturate}} % (0-100)
-          el-slider(:min="0" :max="100" v-model="saturate")
+          el-slider(:min="0" :max="100" v-model.lazy="saturate")
         .block
           label Grayscale: {{preferences.filters.grayscale}} % (0-100)
-          el-slider(:min="0" :max="100" v-model="grayscale")
+          el-slider(:min="0" :max="100" v-model.lazy="grayscale")
         .block
           label Sepia: {{preferences.filters.sepia}} % (0-100)
-          el-slider(:min="0" :max="100" v-model="sepia")
+          el-slider(:min="0" :max="100" v-model.lazy="sepia")
         .block
           label Hue-Rotate: {{preferences.filters['hue-rotate']}} deg (0-360)
-          el-slider(:min="0" :max="360" v-model="hueRotate")
+          el-slider(:min="0" :max="360" v-model.lazy="hueRotate")
         .block
           label Invert: {{preferences.filters.invert}} % (0-100)
-          el-slider(:min="0" :max="100" v-model="invert")
+          el-slider(:min="0" :max="100" v-model.lazy="invert")
         .block
           label Opacity: {{preferences.filters.opacity}} % (0-100)
-          el-slider(:min="0" :max="100" v-model="opacity")
+          el-slider(:min="0" :max="100" v-model.lazy="opacity")
         .block
           label Blur: {{preferences.filters.blur}} px (0-20)
-          el-slider(:min="0" :max="20" v-model="blur")
+          el-slider(:min="0" :max="20" v-model.lazy="blur")
     el-col(:span="8" :offset="1")
       .column.grid-content
         h2 Editor/Note
@@ -72,23 +70,19 @@
           )
         .block
           label Font Color:
-          el-input(
-            placeholder="#FFFFFF"
-            v-model.lazy.trim="fontColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="fontColor")
         .block
           label Text Edge Style:
           br
-          el-radio-group(v-model="textEdgeStyle")
+          el-radio-group(v-model.lazy="textEdgeStyle")
             el-radio(:label="0") None
             el-radio(:label="1") Normal
             el-radio(:label="2") Bold
         .block
           label Text Edge Color:
-          el-input(
-            placeholder="#000000"
-            v-model.lazy.trim="textEdgeColor"
-          )
+          div
+            el-color-picker(v-model.lazy.trim="textEdgeColor")
 </template>
 
 <script>
