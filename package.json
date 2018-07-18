@@ -12,7 +12,7 @@
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js && zip -r yantan.zip dist/",
-    "relese": "release-it",
+    "release": "release-it",
     "cz": "git-cz",
     "precommit": "lint-staged",
     "prepush": "sh push-protection",
@@ -30,6 +30,10 @@
       "eslint --fix",
       "eslint"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AquiTCD/yantan.git"
   },
   "dependencies": {
     "element-ui": "^2.2.2",
