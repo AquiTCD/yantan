@@ -74,9 +74,12 @@ body
   background: transparent
 .main
   align-items: center
+  bottom: 0
   display: flex
   justify-content: center
+  overflow-y: auto
   position: fixed
+  top: 0
 .menu
   bottom: 15px
   position: fixed
