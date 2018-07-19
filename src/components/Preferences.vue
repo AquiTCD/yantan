@@ -83,6 +83,10 @@
           label Text Edge Color:
           div
             el-color-picker(v-model.lazy.trim="textEdgeColor")
+        .block
+          label Assist List Syntax:
+          div
+            el-switch(v-model.lazy="assistListSyntax")
 </template>
 
 <script>
@@ -259,6 +263,15 @@ export default {
       set(val) {
         this.$emit('updatePreferences', 'textEdgeColor', val)
         localStorage.setItem('textEdgeColor', val)
+      },
+    },
+    assistListSyntax: {
+      get() {
+        return this.preferences.assistListSyntax
+      },
+      set(val) {
+        this.$emit('updatePreferences', 'assistListSyntax', val)
+        localStorage.setItem('assistListSyntax', val)
       },
     },
   },
