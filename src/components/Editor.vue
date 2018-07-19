@@ -2,7 +2,13 @@
 .editor.markdown-body(@click="closeEditor($event)")
   .notearea(v-html="compiledMarkdown" @click.stop="clickEditor($event)" v-if="!isEditing" :style="text")
   .textarea(v-else @click.stop="openEditor($event)")
-    textarea(:value="input" @input="update" :placeholder="placeholder" @keyup.esc="closeEditor($event)" @keyup.ctrl.enter="closeEditor($event)")
+    textarea(
+      :value="input"
+      @input="update"
+      :placeholder="placeholder"
+      @keyup.enter.exact="assistEdit"
+      @keyup.esc="closeEditor($event)"
+      @keyup.ctrl.enter="closeEditor($event)")
   Background(:preferences='preferences')
 </template>
 
@@ -99,7 +105,33 @@ export default {
     update: _.debounce(function(e) {
       this.input = e.target.value
       localStorage.setItem('input', e.target.value)
-    }, 300),
+    }, 50),
+    async assistEdit() {
+      if (this.preferences.assistListSyntax) {
+        const textarea = await document.getElementsByTagName('textarea')[0]
+        const carretPos = (await textarea.selectionStart) - 1
+        const inputArray = await this.input.substr(0, carretPos).split('\n')
+        const val = inputArray[inputArray.length - 1]
+        const ul = await val.match(/^(\s*)(-|\+|\*)(\s\[\s\]|\s\[x\])*\s.*$/i)
+        const ol = await val.match(/^(\s*)(\d*\.)\s.*$/i)
+        let listMark = null
+        if (ul) {
+          listMark = `${ul[1]}${ul[2]}${ul[3] || ''} `
+        } else if (ol) {
+          listMark = `${ol[1]}${ol[2]} `
+        }
+        if (listMark) {
+          this.input =
+            this.input.substr(0, carretPos) +
+            '\n' +
+            listMark +
+            this.input.substr(carretPos, this.input.length)
+          const newCarret = carretPos + listMark.length + 1
+          await textarea.focus()
+          textarea.setSelectionRange(newCarret, newCarret)
+        }
+      }
+    },
     toggleEditor(event) {
       return this.isEditing ? this.closeEditor(event) : this.openEditor(event)
     },
