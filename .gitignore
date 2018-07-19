@@ -23,7 +23,8 @@ selenium-debug.log
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -247,4 +248,4 @@ typings/
 .next
 
 # build package
-yantan.zip
+yantan*.zip
