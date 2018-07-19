@@ -113,6 +113,7 @@ export default {
           fontColor: '#FFFFFF',
           textEdgeStyle: 0,
           textEdgeColor: '#000000',
+          assistListSyntax: true,
         }
       },
       required: true,
