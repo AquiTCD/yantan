@@ -9,8 +9,9 @@
         h2 Background
         .block
           label Color:
-          div
+          .color-picker
             el-color-picker(v-model.lazy.trim="bgColor")
+            el-input.indicator(v-model.lazy.trim="bgColor")
         .block
           label Image Display Style:
           br
@@ -70,8 +71,9 @@
           )
         .block
           label Font Color:
-          div
+          .color-picker
             el-color-picker(v-model.lazy.trim="fontColor")
+            el-input.indicator(v-model.lazy.trim="fontColor")
         .block
           label Text Edge Style:
           br
@@ -81,8 +83,9 @@
             el-radio(:label="2") Bold
         .block
           label Text Edge Color:
-          div
+          .color-picker
             el-color-picker(v-model.lazy.trim="textEdgeColor")
+            el-input.indicator(v-model.lazy.trim="textEdgeColor")
         .block
           label Assist List Syntax:
           div
@@ -327,4 +330,9 @@ export default {
   text-align: center
 .column
   border-radius: 4px
+.color-picker
+  vertical-align: text-top
+.indicator
+  vertical-align: top
+  width: 50%
 </style>
