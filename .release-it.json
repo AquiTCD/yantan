@@ -10,12 +10,15 @@
     "tagName": "v%s",
     "pushArgs": "--no-verify"
   },
-  "github": {
-    "release": true,
-    "assets": "./yantan-*.zip",
-    "tokenRef": "GITHUB_TOKEN"
-  },
-  "npm": {
-    "publish": false
+  "dist": {
+    "repo": "git@github.com:AquiTCD/yantan.git",
+    "github": {
+      "release": true,
+      "assets": "./yantan-*.zip",
+      "tokenRef": "GITHUB_TOKEN"
+    },
+    "npm": {
+      "publish": false
+    }
   }
 }

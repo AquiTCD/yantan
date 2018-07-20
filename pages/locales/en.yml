@@ -1,0 +1,68 @@
+globals:
+  appName: YANTAN
+  description: |-
+    Yet Another NewTab as Notes.
+    NewTab as Markdown NotePad with Your Favorite Background Image.
+    (Google Chrome Extension)
+navbar:
+  buttons:
+    github: GitHub
+    twitter: Tweet
+    download: Download
+changeLang:
+  title: select your language
+  en: English
+  ja: 日本語
+lead:
+  title: NewTab can be a notepad with your favorite image.
+  body: |-
+    YANTAN replaces new tab of your Google Chrome.
+    It provides a notepad which is possible to be written in Markdown,
+    and you can put your favorite image on background.
+    The notepad is optimized for markdown means
+    can be task list as well.
+concepts:
+  title: Concepts
+  markdown:
+    title: Markdown is one of the best syntax.
+    body: |-
+      Markdown is a one of the best option to write a note.
+      It is realy easy to make a structural document,
+      and quick to make a task list as well.
+  image:
+    title: YOUR favorite images.
+    body: |-
+      A lot of popular new tab extentsions use beautiful background from somewhere like Flickr, or 500px and so on.
+      However, BEAUTIFUL does not always means FAVORITE.
+      That's why YANTAN accept to show your local images.
+features:
+  title: Features
+  feature1:
+    subtitle: Favorite Image with preferences
+    body: |-
+      In the bottom right, there is a 'preferences' button.
+      Then, you can change preferences as you like.
+      Also you can put your favorite images.
+  feature2:
+    subtitle: Image filter and Font setting
+    body: |-
+      In preferences, you can adjust image filter.
+      You do not have to any software to edit photos.
+      Of course you can change font color as well.
+  feature3:
+    subtitle: Take a note in Markdown
+    body: |-
+      Just click center of main side, it shows you a textarea.
+      Then you can take a note in Markdown.
+      It is possible to use tasklist syntax,
+      means it is not only note, it can be to-do list as well.
+info:
+  title: Download
+  download: Install to Browser
+footer:
+  ghstar: Star
+  tweet: Tweet
+  fbshare: Share
+  license:
+    code: Code licensed under MIT License.
+    copyrights: © 2018 YANTAN

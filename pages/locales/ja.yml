@@ -1,0 +1,63 @@
+globals:
+  appName: YANTAN
+  description: |-
+    Yet Another NewTab as Notes.
+    お好みの背景画像とMarkdownノートを「新しいタブ」ページに。
+    (Google Chrome用拡張)
+navbar:
+  buttons:
+    github: GitHub
+    twitter: Tweet
+    download: Download
+changeLang:
+  title: select your language
+  en: English
+  ja: 日本語
+lead:
+  title: 新しいタブがお好みの背景画像のノートになる
+  body: |-
+    YANTAN はGoogle Chromeの「新しいタブ」を置き替えます。
+    Markdownで書けるノート機能をベースとして、好きな画像を背景に設定することができます。
+    すぐに使えるメモ、タスクリストとしてもお使いいただけます。
+concepts:
+  title: コンセプト
+  markdown:
+    title: Markdownは簡単で便利な記法
+    body: |-
+      Markdownで構造的な文書を書くのは本当に簡単です。
+      またエンジニア以外にも幅広いユーザーに愛されています。
+      さらにはタスクリストも簡単に作ることができるので、最高の選択肢の一つでしょう。
+  image:
+    title: あなたのお好みの画像を背景に
+    body: |-
+      人気の新しいタブ用の拡張は美しい背景画像を提供しますが、多くのものはFlickrや500pxなどのサイトを参照しています。
+      しかしながら、「美しい」は必ずしも「自分の好み」のものと一致しないこともあります。
+      YATANでは自分の好きな画像を選んで表示することができます。
+features:
+  title: 特徴
+  feature1:
+    subtitle: お好みの画像と豊富な設定
+    body: |-
+      右下の「Preferences」ボタンをクリックすると設定画面になります。
+      ここからお好みの画像を選択したり様々な設定が行えます。
+  feature2:
+    subtitle: 画像フィルタと文字設定
+    body: |-
+      Preferencesの中では画像フィルタも設定することができます。
+      もう画像編集用のソフトウェアで調整する必要がありません。
+      もちろん文字色の設定もできますので、文字が見えにくくなる心配もありません。
+  feature3:
+    subtitle: Markdownでメモをとろう
+    body: |-
+      ただ新しいタブページの真ん中あたりをクリックするだけで編集エリアが表示されます。
+      タスクリスト記法にも対応しているので、To-Doリストとしても使うことができ、いつでも素早く使えるメモとして活躍します。
+info:
+  title: Download
+  download: Install to Browser
+footer:
+  ghstar: Star
+  tweet: Tweet
+  fbshare: Share
+  license:
+    code: Code licensed under MIT License.
+    copyrights: © 2018 YANTAN

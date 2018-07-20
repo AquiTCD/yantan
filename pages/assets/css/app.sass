@@ -1,0 +1,22 @@
+// 1. Import the initial variables
+@import "~bulma/sass/utilities/initial-variables"
+@import "~bulma/sass/utilities/functions"
+
+// 2. Set your own initial variables
+
+// 3. Set the derived variables
+
+// 4. Setup your Custom Colors
+// $kddi: #0e0e69
+// $kddi-invert: findColorInvert($kddi)
+
+// 5. Add new color variables to the color map.
+@import "~bulma/sass/utilities/derived-variables.sass"
+// $addColors: ("kddi":($kddi, $kddi-invert))
+// $colors: map-merge($colors, $addColors)
+
+// 6. Import the rest of Bulma
+$variable-columns: false // disable experimental
+@import "~bulma/bulma"
+@import '~bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio'
+@import '~bulma-extensions/bulma-switch/dist/css/bulma-switch'
