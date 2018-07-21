@@ -64,6 +64,7 @@
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
     "commitizen": "^2.10.1",
+    "conventional-changelog-cli": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
