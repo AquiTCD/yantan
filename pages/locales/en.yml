@@ -5,7 +5,7 @@ meta:
     NewTab as Markdown NotePad with Your Favorite Background Image.
     (Google Chrome Extension)
   url: https://aquitcd.github.io/yantan
-  image: https://aquitcd.github.io/yantan/_nuxt/img/main.5588380.png
+  image: https://aquitcd.github.io/yantan/ogp.png
   locale: en-us
 globals:
   appName: YANTAN

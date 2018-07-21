@@ -27,32 +27,6 @@ export default {
       title: this.$t('meta.title'),
       meta: [
         {
-          hid: 'charset',
-          charset: 'UTF-8',
-        },
-        {
-          hid: 'http-equiv',
-          'http-equiv': 'X-UA-Compatible',
-          content: 'IE=edge',
-        },
-        {
-          hid: 'viewport',
-          name: 'viewport',
-          content: 'width=device-width',
-          'initial-scale': 1.0,
-          'minimum-scale': 1.0,
-        },
-        {
-          hid: 'format-detection',
-          name: 'format-detection',
-          content: 'telephone=no,address=no,email=no',
-        },
-        {
-          hid: 'apple-mobile-web-app-capable',
-          name: 'apple-mobile-web-app-capable',
-          content: 'yes',
-        },
-        {
           hid: 'og:title',
           property: 'og:title',
           content: this.$t('meta.title'),

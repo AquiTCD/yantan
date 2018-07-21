@@ -28,7 +28,8 @@ export default {}
   .appName
     font-weight: bold
   .logo
-    // font-family: $font-family-logo
+    font-family: 'Montserrat Subrayada', sans-serif
+    font-size: 2rem
   .icon
     margin-right: 0.5em
 </style>
