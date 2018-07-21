@@ -249,3 +249,6 @@ typings/
 
 # build package
 yantan*.zip
+
+# avoid include pages
+/pages

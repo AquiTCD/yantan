@@ -15,7 +15,6 @@
     "release": "release-it",
     "cz": "git-cz",
     "precommit": "lint-staged",
-    "prepush": "sh push-protection",
     "stash-unstaged": "git stash save -k 'pre-linting-stash' >> /dev/null",
     "lint-staged": "lint-staged || (npm run pop-stash >> /dev/null && exit 1",
     "pop-stash": "git stash && git stash pop stash@{1} && git read-tree stash && git stash drop"
