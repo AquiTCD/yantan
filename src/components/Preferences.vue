@@ -29,7 +29,7 @@
             accept="image/*"
             :auto-upload="false")
             el-button(size="small" type="primary") Select jpeg/png
-            div(slot="tip" class="el-upload__tip") Multipul files are shown randomly.
+            div(slot="tip" class="el-upload__tip") Multiple images are shown randomly.
     el-col(:span="7")
       .column.grid-content
         h3 Image Filters
@@ -90,6 +90,12 @@
           label Assist List Syntax:
           div
             el-switch(v-model.lazy="assistListSyntax")
+            span.hint (Key: Enter)
+        .block
+          label Assist Add/Remove Indent:
+          div
+            el-switch(v-model.lazy="assistIndent")
+            span.hint (Key: Tab/Shift+Tab)
 </template>
 
 <script>
@@ -121,6 +127,7 @@ export default {
           textEdgeStyle: 0,
           textEdgeColor: '#000000',
           assistListSyntax: true,
+          assistIndent: true,
         }
       },
       required: true,
@@ -247,7 +254,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'fontColor', val)
-        localStorage.setItem('fontColor', val)
       },
     },
     textEdgeStyle: {
@@ -256,7 +262,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'textEdgeStyle', val)
-        localStorage.setItem('textEdgeStyle', val)
       },
     },
     textEdgeColor: {
@@ -265,7 +270,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'textEdgeColor', val)
-        localStorage.setItem('textEdgeColor', val)
       },
     },
     assistListSyntax: {
@@ -274,7 +278,14 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'assistListSyntax', val)
-        localStorage.setItem('assistListSyntax', val)
+      },
+    },
+    assistIndent: {
+      get() {
+        return this.preferences.assistIndent
+      },
+      set(val) {
+        this.$emit('updatePreferences', 'assistIndent', val)
       },
     },
   },
@@ -335,4 +346,7 @@ export default {
 .indicator
   vertical-align: top
   width: 50%
+.hint
+  font-size: 1.25rem
+  margin-left: 1rem
 </style>

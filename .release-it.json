@@ -2,20 +2,23 @@
   "requireCleanWorkingDir": false,
   "safeBump": false,
   "increment": "conventional:angular",
-  "buildCommand":
-    "sed -i '' -E 's/\"version\": \".*\",$/\"version\": \"${version}\",/g' static/manifest.json && npm run build && zip -r yantan-v${version}.zip dist",
-  "afterReleaseCommand":
-    "rimraf yantan-v${version}.zip && echo Successfully released ${version} to ${dist.repo}.",
+  "beforeChangelogCommand": "conventional-changelog -p angular -i CHANGELOG.md -s",
+  "changelogCommand": "conventional-changelog -p angular | tail -n +3",
+  "buildCommand": "sed -i '' -E 's/\"version\": \".*\",$/\"version\": \"${version}\",/g' static/manifest.json && npm run build && zip -r yantan-v${version}.zip dist",
+  "afterReleaseCommand": "rimraf yantan-v${version}.zip && echo Successfully released ${version} to ${dist.repo}.",
   "src": {
     "tagName": "v%s",
     "pushArgs": "--no-verify"
   },
-  "github": {
-    "release": true,
-    "assets": "./yantan-*.zip",
-    "tokenRef": "GITHUB_TOKEN"
-  },
-  "npm": {
-    "publish": false
+  "dist": {
+    "repo": "git@github.com:AquiTCD/yantan.git",
+    "github": {
+      "release": true,
+      "assets": "./yantan-*.zip",
+      "tokenRef": "GITHUB_TOKEN"
+    },
+    "npm": {
+      "publish": false
+    }
   }
 }

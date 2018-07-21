@@ -15,7 +15,6 @@
     "release": "release-it",
     "cz": "git-cz",
     "precommit": "lint-staged",
-    "prepush": "sh push-protection",
     "stash-unstaged": "git stash save -k 'pre-linting-stash' >> /dev/null",
     "lint-staged": "lint-staged || (npm run pop-stash >> /dev/null && exit 1",
     "pop-stash": "git stash && git stash pop stash@{1} && git read-tree stash && git stash drop"
@@ -65,6 +64,7 @@
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
     "commitizen": "^2.10.1",
+    "conventional-changelog-cli": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
