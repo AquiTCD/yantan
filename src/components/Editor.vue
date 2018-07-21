@@ -6,7 +6,7 @@
       :value="input"
       @input="update"
       :placeholder="placeholder"
-      @keyup.enter.exact="assistEdit"
+      @keydown.enter.exact.prevent="assistAddList"
       @keyup.esc="closeEditor($event)"
       @keyup.ctrl.enter="closeEditor($event)")
   Background(:preferences='preferences')
@@ -110,28 +110,30 @@ export default {
       this.input = e.target.value
       localStorage.setItem('input', e.target.value)
     }, 50),
-    async assistEdit() {
-      if (this.preferences.assistListSyntax) {
+    async assistAddList() {
         const textarea = await document.getElementsByTagName('textarea')[0]
-        const carretPos = (await textarea.selectionStart) - 1
+      const carretPos = await textarea.selectionStart
         const inputArray = await this.input.substr(0, carretPos).split('\n')
-        const val = inputArray[inputArray.length - 1]
-        const ul = await val.match(/^(\s*)(-|\+|\*)(\s\[\s\]|\s\[x\])*\s.*$/i)
-        const ol = await val.match(/^(\s*)(\d*\.)\s.*$/i)
-        let listMark = null
+      const currentLine = inputArray[inputArray.length - 1]
+      let autoComplete = '\n'
+      if (this.preferences.assistListSyntax) {
+        const ul = await currentLine.match(
+          /^(\s*)(-|\+|\*)(\s\[\s\]|\s\[x\])*\s.*$/i
+        )
+        const ol = await currentLine.match(/^(\s*)(\d*\.)\s.*$/i)
         if (ul) {
-          listMark = `${ul[1]}${ul[2]}${ul[3] || ''} `
+          autoComplete += `${ul[1]}${ul[2]}${ul[3] || ''} `
         } else if (ol) {
-          listMark = `${ol[1]}${ol[2]} `
+          autoComplete += `${ol[1]}${ol[2]} `
         }
-        if (listMark) {
+      }
           this.input =
             this.input.substr(0, carretPos) +
-            '\n' +
-            listMark +
+        autoComplete +
             this.input.substr(carretPos, this.input.length)
-          const newCarret = carretPos + listMark.length + 1
-          await textarea.focus()
+      const newCarret = await (carretPos + autoComplete.length)
+      textarea.setSelectionRange(newCarret, newCarret)
+    },
           textarea.setSelectionRange(newCarret, newCarret)
         }
       }
