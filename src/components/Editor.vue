@@ -77,9 +77,10 @@ export default {
       return parser.render(markdownText)
     },
     placeholder() {
-      return this.dummyText
+      return this.preferences.dummyText
     },
     text() {
+      try {
       let style = ''
       const regexColor = /^#([\da-fA-F]{6}|[\da-fA-F]{3})$/
       const shadowColor = this.preferences.textEdgeColor.trim()
@@ -96,6 +97,9 @@ export default {
         }
       }
       return style || false
+      } catch (e) {
+        return false
+      }
     },
   },
   mounted() {
