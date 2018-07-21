@@ -1,3 +1,11 @@
+meta:
+  title: YANTAN - 新しいタブをお好みの背景画像とMarkdownノートを「新しいタブ」ページに。
+  description: |-
+    Yet Another NewTab as Notes.
+    お好みの背景画像とMarkdownノートを「新しいタブ」ページに。
+  url: https://aquitcd.github.io/yantan/ja
+  image: https://aquitcd.github.io/yantan/_nuxt/img/main.5588380.png
+  locale: ja_JP
 globals:
   appName: YANTAN
   description: |-

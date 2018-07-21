@@ -1,3 +1,12 @@
+meta:
+  title: YANTAN - Markdown note with favorite image in New tab
+  description: |-
+    Yet Another NewTab as Notes.
+    NewTab as Markdown NotePad with Your Favorite Background Image.
+    (Google Chrome Extension)
+  url: https://aquitcd.github.io/yantan
+  image: https://aquitcd.github.io/yantan/_nuxt/img/main.5588380.png
+  locale: en-us
 globals:
   appName: YANTAN
   description: |-

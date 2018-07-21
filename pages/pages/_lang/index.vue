@@ -22,6 +22,76 @@ export default {
     Features,
     Info,
   },
+  head() {
+    return {
+      title: this.$t('meta.title'),
+      meta: [
+        {
+          hid: 'charset',
+          charset: 'UTF-8',
+        },
+        {
+          hid: 'http-equiv',
+          'http-equiv': 'X-UA-Compatible',
+          content: 'IE=edge',
+        },
+        {
+          hid: 'viewport',
+          name: 'viewport',
+          content: 'width=device-width',
+          'initial-scale': 1.0,
+          'minimum-scale': 1.0,
+        },
+        {
+          hid: 'format-detection',
+          name: 'format-detection',
+          content: 'telephone=no,address=no,email=no',
+        },
+        {
+          hid: 'apple-mobile-web-app-capable',
+          name: 'apple-mobile-web-app-capable',
+          content: 'yes',
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.$t('meta.title'),
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.$t('meta.title'),
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('meta.body'),
+        },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.$t('meta.image'),
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.$t('meta.body'),
+        },
+        { hid: 'og:url', property: 'og:url', content: this.$t('meta.url') },
+        {
+          hid: 'og:site_name',
+          property: 'og:site_name',
+          content: this.$t('meta.title'),
+        },
+        {
+          hid: 'og:locale',
+          property: 'og:locale',
+          content: this.$t('meta.locale'),
+        },
+      ],
+    }
+  },
 }
 </script>
 
