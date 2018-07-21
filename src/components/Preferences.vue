@@ -90,6 +90,12 @@
           label Assist List Syntax:
           div
             el-switch(v-model.lazy="assistListSyntax")
+            span.hint (Key: Enter)
+        .block
+          label Assist Add/Remove Indent:
+          div
+            el-switch(v-model.lazy="assistIndent")
+            span.hint (Key: Tab/Shift+Tab)
 </template>
 
 <script>
@@ -121,6 +127,7 @@ export default {
           textEdgeStyle: 0,
           textEdgeColor: '#000000',
           assistListSyntax: true,
+          assistIndent: true,
         }
       },
       required: true,
@@ -273,6 +280,14 @@ export default {
         this.$emit('updatePreferences', 'assistListSyntax', val)
       },
     },
+    assistIndent: {
+      get() {
+        return this.preferences.assistIndent
+      },
+      set(val) {
+        this.$emit('updatePreferences', 'assistIndent', val)
+      },
+    },
   },
   methods: {
     handleRemove(file, fileList) {
@@ -331,4 +346,7 @@ export default {
 .indicator
   vertical-align: top
   width: 50%
+.hint
+  font-size: 1.25rem
+  margin-left: 1rem
 </style>

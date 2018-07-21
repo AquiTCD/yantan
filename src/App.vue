@@ -35,6 +35,7 @@ export default {
         textEdgeStyle: 0,
         textEdgeColor: '#000000',
         assistListSyntax: true,
+        assistIndent: true,
       },
     }
   },
