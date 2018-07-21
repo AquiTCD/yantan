@@ -83,7 +83,7 @@ body
 .menu
   bottom: 15px
   position: fixed
-  right: 15px
+  right: 20px
   z-index: 101
 .page-enter-active,
 .page-leave-active

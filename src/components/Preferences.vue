@@ -29,7 +29,7 @@
             accept="image/*"
             :auto-upload="false")
             el-button(size="small" type="primary") Select jpeg/png
-            div(slot="tip" class="el-upload__tip") Multipul files are shown randomly.
+            div(slot="tip" class="el-upload__tip") Multiple images are shown randomly.
     el-col(:span="7")
       .column.grid-content
         h3 Image Filters
