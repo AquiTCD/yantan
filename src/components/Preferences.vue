@@ -247,7 +247,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'fontColor', val)
-        localStorage.setItem('fontColor', val)
       },
     },
     textEdgeStyle: {
@@ -256,7 +255,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'textEdgeStyle', val)
-        localStorage.setItem('textEdgeStyle', val)
       },
     },
     textEdgeColor: {
@@ -265,7 +263,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'textEdgeColor', val)
-        localStorage.setItem('textEdgeColor', val)
       },
     },
     assistListSyntax: {
@@ -274,7 +271,6 @@ export default {
       },
       set(val) {
         this.$emit('updatePreferences', 'assistListSyntax', val)
-        localStorage.setItem('assistListSyntax', val)
       },
     },
   },
