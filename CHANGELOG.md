@@ -1,3 +1,24 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/AquiTCD/yantan/compare/v0.4.0...v0.5.0) (2018-07-21)
+
+
+### Bug Fixes
+
+* **Editor:** fix logic of assist list syntax ([05abd41](https://github.com/AquiTCD/yantan/commit/05abd41))
+
+
+### Features
+
+* **Editor:** implement indent assist ([cd18776](https://github.com/AquiTCD/yantan/commit/cd18776))
+
+
+### Performance Improvements
+
+* **Editor:** add error guard when get data ([9a79eeb](https://github.com/AquiTCD/yantan/commit/9a79eeb))
+* **Preferences:** remove unnecessary data set ([1a04936](https://github.com/AquiTCD/yantan/commit/1a04936))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/AquiTCD/yantan/compare/v0.3.0...v0.4.0) (2018-07-19)
 
