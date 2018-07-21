@@ -65,7 +65,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('meta.body'),
+          content: this.$t('meta.description'),
         },
         { hid: 'og:type', property: 'og:type', content: 'website' },
         {
@@ -76,7 +76,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.$t('meta.body'),
+          content: this.$t('meta.description'),
         },
         { hid: 'og:url', property: 'og:url', content: this.$t('meta.url') },
         {
@@ -88,6 +88,17 @@ export default {
           hid: 'og:locale',
           property: 'og:locale',
           content: this.$t('meta.locale'),
+        },
+        { hid: 'twitter:card', property: 'twitter:card', content: 'summary' },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: this.$t('meta.description'),
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content: this.$t('meta.image'),
         },
       ],
     }
