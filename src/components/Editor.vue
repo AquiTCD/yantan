@@ -6,7 +6,7 @@
       :value="input"
       @input="update"
       :placeholder="placeholder"
-      @keydown.enter.exact.prevent="assistAddList"
+      @keypress.enter.exact.prevent="assistAddList"
       @keydown.tab.exact.prevent="assistAddIndent"
       @keydown.shift.extact.tab.exact.prevent="assistRemoveIndent"
       @keyup.esc="closeEditor($event)"
