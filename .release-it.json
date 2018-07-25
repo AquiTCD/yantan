@@ -5,17 +5,19 @@
   "beforeChangelogCommand": "conventional-changelog -p angular -i CHANGELOG.md -s",
   "changelogCommand": "conventional-changelog -p angular | tail -n +3",
   "buildCommand": "sed -i '' -E 's/\"version\": \".*\",$/\"version\": \"${version}\",/g' static/manifest.json && npm run build && zip -r yantan-v${version}.zip dist",
-  "afterReleaseCommand": "rimraf yantan-v${version}.zip && echo Successfully released ${version} to ${dist.repo}.",
   "src": {
     "tagName": "v%s",
-    "pushArgs": "--no-verify"
+    "pushArgs": "--no-verify",
+    "afterReleaseCommand": "rimraf yantan*.zip && echo Successfully released ${version}."
+  },
+  "github": {
+    "release": true,
+    "assets": "./yantan-*.zip",
+    "host": "github.com"
   },
   "dist": {
-    "repo": "git@github.com:AquiTCD/yantan.git",
     "github": {
-      "release": true,
-      "assets": "./yantan-*.zip",
-      "tokenRef": "GITHUB_TOKEN"
+      "release": false
     },
     "npm": {
       "publish": false
