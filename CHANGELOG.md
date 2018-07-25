@@ -1,3 +1,13 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/AquiTCD/yantan/compare/v0.5.0...v0.5.1) (2018-07-25)
+
+
+### Bug Fixes
+
+* **Editor:** change trigger to enter keypress from enter keydown ([7d069fc](https://github.com/AquiTCD/yantan/commit/7d069fc)), closes [#5](https://github.com/AquiTCD/yantan/issues/5)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/AquiTCD/yantan/compare/v0.4.0...v0.5.0) (2018-07-21)
 
